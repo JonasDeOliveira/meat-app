@@ -1,30 +1,15 @@
+import { Injectable } from "@angular/core";
 import { Restaurant } from "./restaurant/restaurant.model";
+import { Http } from '@angular/http';
+import { MEAT_API } from '../app.api';
 
+@Injectable()
 export class RestaurantsService {
 
-    rests: Restaurant[] = [
-        {
-            id: "bread-bakery",
-            name: "Bread & Bakery",
-            category: "Bakery",
-            deliveryEstimate: "25m",
-            rating: 4.9,
-            imagePath: "assets/img/restaurants/breadbakery.png"
-        },
-        {
-            id: "bread-teste",
-            name: "Bread & Bakery",
-            category: "Bakery",
-            deliveryEstimate: "25m",
-            rating: 4.9,
-            imagePath: "assets/img/restaurants/breadbakery.png"
-        }
-    ]
-
-    constructor(){}
+    constructor(private http: Http){}
 
     restaurants(): Restaurant[] {
-        return this.rests;
+        return this.http.get(`${MEAT_API}/restaurants`)
     }
 
 }
